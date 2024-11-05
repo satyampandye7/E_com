@@ -35,7 +35,7 @@ def signup(request):
         
         
         user = User.objects.create_user(email, email, password)
-        user.is_active = False
+        user.is_active = True
         user.save()
 
       
@@ -78,9 +78,25 @@ class ActivateAccountView(View):
 
 
 def handlelogin(request):
-  return render(request,"login.html")
+    if request.method=="POST":
+
+        username=request.POST['email']
+        userpassword=request.POST['pass1']
+        myuser=authenticate(username=username,password=userpassword)
+
+        if myuser is not None:
+            login(request,myuser)
+            messages.success(request,"Login Success")
+            return redirect('/')
+
+        else:
+            messages.error(request,"Invalid Credentials")
+            return redirect('/auth/login')
+
+    return render(request,'login.html') 
 
 
 def handlelogout(request):
-  return redirect('/auth/login')
-
+    logout(request)
+    messages.info(request,"Logout Success")
+    return redirect('/auth/login')

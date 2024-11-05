@@ -54,26 +54,28 @@
 
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a class="nav-link scrollto" href="/" class="active">Home</a></li>
+          <li><a class="nav-link scrollto active" href="/">Home</a></li>
           <li><a class="nav-link scrollto" href="/about">About</a></li>
-          <li><a  class="nav-link scrollto" href="/blog">Blog</a></li>
-          <li><a class="nav-link scrollto" href="/blog">Orders</a></li>
-          <li><a class="nav-link scrollto" href="/blog">My Profile</a></li>
+          <li><a class="nav-link scrollto" href="/checkout">Checkout</a></li>
+          <li><a class="nav-link scrollto" href="/profile">My Profile<i class="fa-regular fa-square-user"></i> </a></li>
+
+          <button type="button" class="nav-link scrollto bg-danger p-3 m-2 text-white" id="popcart" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" ><i class="fa-solid fa-cart-shopping"></i>  Cart (<span id="cart">0</span>)
+          </button>
+
+
+          {% if request.user.is_authenticated %}
+          <li><a class="nav-link scrollto" href="/auth/logout/">Log Out</a></li>
+
+          {% comment %} {{user.username}} {% endcomment %}
+          {% else %}
           <li class="dropdown"><a href="#"><span>Sign In</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
               <li><a href="/auth/signup/">Sign In</a></li>
               <li><a href="/auth/login/">Log In</a></li>
-              <li><a href="/auth/logout/">Log Out</a></li>
+              
             </ul>
           </li>
-          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css%}">
-
-          <li>
-            <a class="nav-link scrollto bg-danger p-2 m-2" href="/cart">
-              Cart<i class="fa-solid fa-cart-shopping"></i> 
-            </a>
-          </li>
-          
+          {% endif %}
 
           <li><a class="nav-link scrollto bg-dark p-3 m-2" href="/contact">Contact <i class="fa-solid fa-message-middle"></i></a></li>
           
@@ -92,7 +94,9 @@
       <img src="{% static 'images/bgg.jpg' %}" alt="" data-aos="fade-in">
   
       <div class="container text-center" data-aos="fade-up" data-aos-delay="100">
-          {% block content %} {% endblock %}
+          {% block content %} 
+          
+          {% endblock content %}
       </div>
   
   </section>
@@ -101,6 +105,7 @@
     <main class="main">
       {%block body %}
   
+      
       {% endblock body %}
 
     </main>
@@ -147,21 +152,21 @@
 
         <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
           <h4>Contact Us</h4>
-          <p>A108 Adam Street</p>
-          <p>New York, NY 535022</p>
-          <p>United States</p>
-          <p class="mt-4"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
-          <p><strong>Email:</strong> <span>info@example.com</span></p>
+          <p>A/B 222/3 Govindpuri</p>
+          <p>Delhi(110019)</p>
+          <p>India</p>
+          <p class="mt-4"><strong>Phone:</strong> <span>7734091791</span></p>
+          <p><strong>Email:</strong> <span>ppnnssa@gmail.com</span></p>
         </div>
 
       </div>
     </div>
 
     <div class="container copyright text-center mt-4">
-      <p>© <span>Copyright</span> <strong class="px-1 sitename">Tempo</strong> <span>All Rights Reserved</span></p>
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">Satya</strong> <span>All Rights Reserved</span></p>
       <div class="credits">
       
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        Designed by <a href="https://bootstrapmade.com/">Satyam Pandey</a>
       </div>
     </div>
 
