@@ -116,8 +116,8 @@ USE_TZ = True
 
 #sending emails
 EMAIL_HOST='smtpout.secureserver.net'
-EMAIL_HOST_USER='mia@gmail.com'
-EMAIL_HOST_PASSWORD='ffnt vciy gihl omfx'
+EMAIL_HOST_USER='joro'
+EMAIL_HOST_PASSWORD='gold nhop ywqu ndfg'
 EMAIL_PORT=587
 EMAIL_USE_TLS=True
 EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
@@ -139,6 +139,8 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),  # assuming you have a 'static' folder in your project root
 ]
 
+MEDIA_URL ='/media/'
+MEDIA_ROOT =os.path.join(BASE_DIR,"media")
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
