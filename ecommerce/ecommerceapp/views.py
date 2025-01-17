@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from ecommerceapp.models import Contact,Product,Orders,OrderUpdate
 from django.contrib import messages
 from math import ceil
-from PayTm import Checksum
+# from PayTm import Checksum
 # MERCHANT_KEY=keys.MK
 # from ecommerceapp import keys
 import json
@@ -121,6 +121,29 @@ def handlerequest(request):
         else:
             print('order was not successful because' + response_dict['RESPMSG'])
     return render(request, 'paymentstatus.html', {'response': response_dict})
+
+
+def profile(request):
+    if not request.user.is_authenticated:
+        messages.warning(request,"Login & Try Again")
+        return redirect('/auth/login')
+    currentuser=request.user.username
+    items=Orders.objects.filter(email=currentuser)
+    rid=""
+    for i in items:
+        print(i.oid)
+        # print(i.order_id)
+        myid=i.oid
+        rid=myid.replace("ShopyCart","")
+        print(rid)
+    status=OrderUpdate.objects.filter(order_id=int(rid))
+    for j in status:
+        print(j.update_desc)
+
+   
+    context ={"items":items,"status":status}
+    # print(currentuser)
+    return render(request,"profile.html",context)
 
 
 
